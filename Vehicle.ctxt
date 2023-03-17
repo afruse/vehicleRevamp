@@ -2,7 +2,7 @@
 comment0.target=Vehicle
 comment0.text=\r\n\ This\ is\ the\ superclass\ for\ Vehicles.\r\n\ \r\n
 comment1.params=
-comment1.target=boolean\ checkHitPedestrian()
+comment1.target=boolean\ checkHitWalker()
 comment2.params=origin
 comment2.target=Vehicle(VehicleSpawner)
 comment3.params=w

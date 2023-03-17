@@ -22,15 +22,20 @@ public class Bus extends Vehicle
     public void act()
     {
         drive();
-        checkHitPedestrian();
+        checkHitWalker();
         if (checkEdge()){
             getWorld().removeObject(this);
         }
         
     }
 
-    public boolean checkHitPedestrian () {
-        // currently empty
+    public boolean checkHitWalker () {
+        Walker p = (Walker)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Walker.class);
+        
+        if (p != null){
+            p.knockDown();
+            return true;
+        }
         return false;
     }
 }

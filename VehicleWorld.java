@@ -3,10 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * <h1>The new and vastly improved 2022 Vehicle Simulation Assignment.</h1>
  * <p> This is the first redo of the 8 year old project. Lanes are now drawn dynamically, allowing for
- *     much greater customization. Pedestrians can now move in two directions. The graphics are better
+ *     much greater customization. Walkers can now move in two directions. The graphics are better
  *     and the interactions smoother.</p>
- * <p> The Pedestrians are not as dumb as before (they don't want straight into Vehicles) and the Vehicles
- *     do a somewhat better job detecting Pedestrians.</p>
+ * <p> The Walkers are not as dumb as before (they don't want straight into Vehicles) and the Vehicles
+ *     do a somewhat better job detecting Walkers.</p>
  * 
  * Version Notes - Feb 2023
  * --> Includes grid <--> lane conversion method
@@ -37,7 +37,7 @@ public class VehicleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false); 
 
-        setPaintOrder (Pedestrian.class, Bus.class, Car.class, Ambulance.class);
+        setPaintOrder (Walker.class, Bus.class, Car.class, Ambulance.class);
 
         // set up background
         background = new GreenfootImage ("background01.png");
@@ -60,6 +60,7 @@ public class VehicleWorld extends World
     }
 
     public void act () {
+        
         spawn();
     }
 
@@ -79,14 +80,14 @@ public class VehicleWorld extends World
             }
         }
 
-        // Chance to spawn a Pedestrian
+        // Chance to spawn a Walker
         if (Greenfoot.getRandomNumber (60) == 0){
             int xSpawnLocation = Greenfoot.getRandomNumber (600) + 100; // random between 99 and 699, so not near edges
             boolean spawnAtTop = Greenfoot.getRandomNumber(2) == 0 ? true : false;
             if (spawnAtTop){
-                addObject (new Pedestrian (1), xSpawnLocation, 50);
+                addObject (new Walker (1), xSpawnLocation, 50);
             } else {
-                addObject (new Pedestrian (-1), xSpawnLocation, 550);
+                addObject (new Walker (-1), xSpawnLocation, 550);
             }
         }
     }

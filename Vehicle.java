@@ -13,7 +13,7 @@ public abstract class Vehicle extends SuperSmoothMover
     protected int yOffset;
     protected VehicleSpawner origin;
     
-    protected abstract boolean checkHitPedestrian ();
+    protected abstract boolean checkHitWalker ();
 
     public Vehicle (VehicleSpawner origin) {
         this.origin = origin;

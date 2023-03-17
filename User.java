@@ -1,18 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The Car subclass
+ * Write a description of class User here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Car extends Vehicle
+public class User extends Vehicle
 {
-    
-    public Car(VehicleSpawner origin) {
+    /**
+     * Act - do whatever the User wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public User(VehicleSpawner origin) {
         super(origin); // call the superclass' constructor
         maxSpeed = 1.5 + ((Math.random() * 30)/5);
         speed = maxSpeed;
         yOffset = 0;
     }
-
     public void act()
     {
         drive(); 
@@ -21,10 +26,6 @@ public class Car extends Vehicle
             getWorld().removeObject(this);
         }
     }
-    
-    /**
-     * When a Car hit's a Walker, it should knock it over
-     */
     public boolean checkHitWalker () {
         Walker p = (Walker)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Walker.class);
         
