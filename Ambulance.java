@@ -27,7 +27,7 @@ public class Ambulance extends Vehicle
     }
 
     public boolean checkHitWalker () {
-        Walker p = (Walker)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Walker.class);
+        Crossers p = (Crossers)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Crossers.class);
         
         if (p != null){
             p.healMe();

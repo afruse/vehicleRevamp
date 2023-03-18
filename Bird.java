@@ -1,18 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A Pedestrian that tries to walk across the street
+ * Write a description of class Bird here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Pedestrian extends Crossers
+public class Bird extends Crossers
 {
-    public Pedestrian(int direction) {
+    public Bird(int direction){
         super(direction);
     }
-
-    /**
-     * Act - do whatever the Pedestrian wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         // If there is a v
@@ -27,5 +25,4 @@ public class Pedestrian extends Crossers
             }
         }
     }
-    
 }

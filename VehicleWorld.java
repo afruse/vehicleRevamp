@@ -37,7 +37,7 @@ public class VehicleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false); 
 
-        setPaintOrder (Walker.class, Bus.class, Car.class, Ambulance.class);
+        setPaintOrder (Bird.class, Pedestrian.class, Bus.class, Car.class, Ambulance.class);
 
         // set up background
         background = new GreenfootImage ("background01.png");
@@ -85,9 +85,9 @@ public class VehicleWorld extends World
             int xSpawnLocation = Greenfoot.getRandomNumber (600) + 100; // random between 99 and 699, so not near edges
             boolean spawnAtTop = Greenfoot.getRandomNumber(2) == 0 ? true : false;
             if (spawnAtTop){
-                addObject (new Walker (1), xSpawnLocation, 50);
+                addObject (new Bird (1), xSpawnLocation, 50);
             } else {
-                addObject (new Walker (-1), xSpawnLocation, 550);
+                addObject (new Bird (-1), xSpawnLocation, 550);
             }
         }
     }

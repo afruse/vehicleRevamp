@@ -26,7 +26,7 @@ public class Car extends Vehicle
      * When a Car hit's a Walker, it should knock it over
      */
     public boolean checkHitWalker () {
-        Walker p = (Walker)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Walker.class);
+        Crossers p = (Crossers)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Crossers.class);
         
         if (p != null){
             p.knockDown();

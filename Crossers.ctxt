@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Crossers
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Crossers\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=direction
+comment1.target=Crossers(int)
+comment2.params=
+comment2.target=void\ knockDown()
+comment2.text=\r\n\ Method\ to\ cause\ this\ Pedestrian\ to\ become\ knocked\ down\ -\ stop\ moving,\ turn\ onto\ side\r\n
+comment3.params=
+comment3.target=void\ healMe()
+comment3.text=\r\n\ Method\ to\ allow\ a\ downed\ Pedestrian\ to\ be\ healed\r\n
+comment4.params=
+comment4.target=boolean\ isAwake()
+comment5.params=
+comment5.target=void\ act()
+numComments=6
