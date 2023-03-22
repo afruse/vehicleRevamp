@@ -8,10 +8,13 @@ public class User extends Vehicle
     private static double fourth = 1.3;
     private static double fifth = 0.9;
     private static double gear = first;
-    private double rpm = 1000;
+    private double rpm;
     private double wheelSpeed;
-    public double wheelSpeed(double gear){
-        return (1/gear)*rpm;
+    public double Rpm(){
+        return wheelSpeed / gear;
+    }
+    public void addedToWorld(World w){
+        setLocation(400, 300);
     }
     public User(VehicleSpawner origin) {
         super(origin); // call the superclass' constructor
@@ -45,13 +48,37 @@ public class User extends Vehicle
         else if(Greenfoot.isKeyDown("Z") && gear == second){
             this.gear = first;
         }
-        wheelSpeed = wheelSpeed(this.gear);
         checkHitWalker();
-        if (checkEdge()){
-            getWorld().removeObject(this);
+        rpm = Rpm();
+        if(rpm > 1000){
+            wheelSpeed -= 10;
         }
     }
-    
+    public void drive(){
+        if(Greenfoot.isKeyDown("up")){
+            if(gear == first){
+                wheelSpeed += 100;
+            }
+            else if(gear == second){
+                wheelSpeed += 90;
+            }
+            else if(gear == third){
+                wheelSpeed += 80;
+            }
+            else if(gear == fourth){
+                wheelSpeed += 70;
+            }
+            else if(gear == fifth){
+                wheelSpeed += 60;
+            }
+
+        }
+    }
+    public void brake(){
+        if(Greenfoot.isKeyDown("down")){
+            wheelSpeed -= 100;
+        }
+    }
     public boolean checkHitWalker () {
         Crossers p = (Crossers)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Crossers.class);
         

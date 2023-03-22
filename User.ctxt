@@ -1,11 +1,17 @@
 #BlueJ class context
 comment0.target=User
-comment1.params=gear
-comment1.target=double\ wheelSpeed(double)
-comment2.params=origin
-comment2.target=User(VehicleSpawner)
-comment3.params=
-comment3.target=void\ act()
+comment1.params=
+comment1.target=double\ Rpm()
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=origin
+comment3.target=User(VehicleSpawner)
 comment4.params=
-comment4.target=boolean\ checkHitWalker()
-numComments=5
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ drive()
+comment6.params=
+comment6.target=void\ brake()
+comment7.params=
+comment7.target=boolean\ checkHitWalker()
+numComments=8

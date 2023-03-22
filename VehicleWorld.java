@@ -37,7 +37,7 @@ public class VehicleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false); 
 
-        setPaintOrder (Bird.class, Pedestrian.class, Bus.class, Car.class, Ambulance.class);
+        setPaintOrder (Bird.class, Pedestrian.class, User.class, Bus.class, Car.class, Ambulance.class);
 
         // set up background
         background = new GreenfootImage ("background01.png");
@@ -56,11 +56,10 @@ public class VehicleWorld extends World
 
         // Prepare lanes method - draws the lanes
         lanePositionsY = prepareLanes (this, background, laneSpawners, 222, laneHeight, laneCount, spaceBetweenLanes, twoWayTraffic, splitAtCenter);
-
+        addObject(new User(laneSpawners[1]), 400, 300);
     }
 
     public void act () {
-        addObject(new User(), 0, 0);
         spawn();
     }
 
