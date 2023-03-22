@@ -1,17 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class User here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class User extends Vehicle
 {
-    /**
-     * Act - do whatever the User wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private static double first = 2.5;
+    private static double second = 2.1;
+    private static double third = 1.7;
+    private static double fourth = 1.3;
+    private static double fifth = 0.9;
+    private static double gear = first;
+    private double rpm = 1000;
+    private double wheelSpeed;
+    public double wheelSpeed(double gear){
+        return (1/gear)*rpm;
+    }
     public User(VehicleSpawner origin) {
         super(origin); // call the superclass' constructor
         maxSpeed = 1.5 + ((Math.random() * 30)/5);
@@ -20,12 +21,37 @@ public class User extends Vehicle
     }
     public void act()
     {
-        drive(); 
+        if(Greenfoot.isKeyDown("A") && gear == first){
+            this.gear = second;
+        }
+        else if(Greenfoot.isKeyDown("A") && gear == second){
+            this.gear = third;
+        }
+        else if(Greenfoot.isKeyDown("A") && gear == third){
+            this.gear = fourth;
+        }
+        else if(Greenfoot.isKeyDown("A") && gear == fourth){
+            this.gear = fifth;
+        }
+        else if(Greenfoot.isKeyDown("Z") && gear == fifth){
+            this.gear = fourth;
+        }
+        else if(Greenfoot.isKeyDown("Z") && gear == fourth){
+            this.gear = third;
+        }
+        else if(Greenfoot.isKeyDown("Z") && gear == third){
+            this.gear = second;
+        }
+        else if(Greenfoot.isKeyDown("Z") && gear == second){
+            this.gear = first;
+        }
+        wheelSpeed = wheelSpeed(this.gear);
         checkHitWalker();
         if (checkEdge()){
             getWorld().removeObject(this);
         }
     }
+    
     public boolean checkHitWalker () {
         Crossers p = (Crossers)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Crossers.class);
         

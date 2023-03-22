@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bird here.
+ * Write a description of class Bird_1 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bird extends Crossers
+public class Bird_1 extends Crossers
 {
-    public Bird(int direction){
+    public Bird_1(int direction){
         super(direction);
         GreenfootImage image = getImage();
         image.scale(26, 23);

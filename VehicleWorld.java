@@ -60,7 +60,7 @@ public class VehicleWorld extends World
     }
 
     public void act () {
-        
+        addObject(new User(), 0, 0);
         spawn();
     }
 
@@ -87,7 +87,7 @@ public class VehicleWorld extends World
             if (spawnAtTop){
                 addObject (new Bird (1), xSpawnLocation, 50);
             } else {
-                addObject (new Bird (-1), xSpawnLocation, 550);
+                addObject (new Bird_1 (-1), xSpawnLocation, 550);
             }
         }
     }
