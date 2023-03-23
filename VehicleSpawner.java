@@ -18,7 +18,7 @@ public class VehicleSpawner extends Actor
     
     private boolean rightward;
     private boolean visible;
-    private int height, width;
+    public int height, width;
     
     public VehicleSpawner (boolean rightward, int laneHeight)
     {

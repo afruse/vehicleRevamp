@@ -43,7 +43,7 @@ public abstract class Vehicle extends SuperSmoothMover
     protected boolean checkEdge() {
         if (direction == 1)
         { // if moving right, check 200 pixels to the right (above max X)
-            if (getX() > getWorld().getWidth() + 200){
+            if (getX() > getWorld().getWidth() + 200 && getX() < -200){
                 return true;
             }
         } 

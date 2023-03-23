@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.World;
 
 /**
  * <h1>The new and vastly improved 2022 Vehicle Simulation Assignment.</h1>
@@ -24,10 +25,13 @@ public class VehicleWorld extends World
 
     // Instance variables / Objects
     private boolean twoWayTraffic, splitAtCenter;
-    private int laneHeight, laneCount, spaceBetweenLanes;
+    public static int laneHeight, laneCount, spaceBetweenLanes;
     private int[] lanePositionsY;
     private VehicleSpawner[] laneSpawners;
-
+    private static boolean change = false;
+    private static int changeX;
+    private static int changeY;
+    private static boolean changeNow = false;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -58,13 +62,24 @@ public class VehicleWorld extends World
         lanePositionsY = prepareLanes (this, background, laneSpawners, 222, laneHeight, laneCount, spaceBetweenLanes, twoWayTraffic, splitAtCenter);
         addObject(new User(laneSpawners[1]), 400, 300);
     }
-
     public void act () {
         spawn();
+        if(change){
+            LaneChange changeLanes = new LaneChange(laneHeight);
+            addObject(changeLanes, changeX + 20, changeY + 55);
+            change = false;
+            changeNow = !changeLanes.touching();
+        }
     }
-
+    public static boolean ChangeLaneNow(){
+        return changeNow;
+    }
+    public static void change(double x, double y){
+        change = true;
+        changeX = (int)x;
+        changeY = (int)y;
+    }
     private void spawn () {
-        // Chance to spawn a vehicle
         if (Greenfoot.getRandomNumber (60) == 0){
             int lane = Greenfoot.getRandomNumber(laneCount);
             if (!laneSpawners[lane].isTouchingVehicle()){

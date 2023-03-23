@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=LaneChange
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ LaneChange\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=laneHeight
+comment1.target=LaneChange(int)
+comment2.params=
+comment2.target=boolean\ touching()
+comment3.params=
+comment3.target=void\ act()
+numComments=4
