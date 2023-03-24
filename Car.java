@@ -20,8 +20,8 @@ public class Car extends Vehicle
     public void act()
     {
         drive();
-        
-        if(speed != maxSpeed && !othersChanging && canCheckChange && (600-VehicleWorld.laneHeight*2) > getY()){
+        Vehicle ahead = (Vehicle) getOneObjectAtOffset (direction * (int)(speed + getImage().getWidth()/2 + 4), 0, Vehicle.class);
+        if(ahead != null && !othersChanging && canCheckChange && (600-VehicleWorld.laneHeight*2) > getY()){
             VehicleWorld.change(getX(), getY());
             othersChanging = true;
             canCheckChange = false;
