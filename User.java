@@ -14,7 +14,7 @@ public class User extends Vehicle
         return wheelSpeed / gear;
     }
     public void addedToWorld(World w){
-        setLocation(400, 305);
+        setLocation(400, 300);
     }
     public User(VehicleSpawner origin) {
         super(origin); // call the superclass' constructor
