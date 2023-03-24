@@ -61,10 +61,10 @@ public class VehicleWorld extends World
         // Prepare lanes method - draws the lanes
         lanePositionsY = prepareLanes (this, background, laneSpawners, 222, laneHeight, laneCount, spaceBetweenLanes, twoWayTraffic, splitAtCenter);
         addObject(new User(laneSpawners[1]), 400, 300);
-        addObject(new Car(laneSpawners[1]), 0, 0);
+        //addObject(new Car(laneSpawners[1]), 0, 0);
     }
     public void act () {
-        //spawn();
+        spawn();
         if(change){
             LaneChange changeLanes = new LaneChange(laneHeight);
             addObject(changeLanes, changeX + 20, changeY + 55);
