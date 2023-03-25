@@ -70,7 +70,7 @@ public abstract class Vehicle extends SuperSmoothMover
             speed = maxSpeed;
 
         } else {
-            speed = ahead.getSpeed();
+            speed = ahead.getSpeed() - 2;
         }
         move (speed * direction);
     }   

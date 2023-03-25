@@ -15,7 +15,7 @@ public class LaneChange extends Actor
     public LaneChange (int laneHeight)
     {
         this.height = (int)(laneHeight * 0.75);
-        width = 170;
+        width = 250;
         // set this to true to see the Spawners - might help with understanding of how this works:
         visible = true;
         image = new GreenfootImage (width, height);

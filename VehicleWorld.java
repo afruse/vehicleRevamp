@@ -41,7 +41,7 @@ public class VehicleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false); 
 
-        setPaintOrder (Bird.class, Pedestrian.class, User.class, Bus.class, Car.class, Ambulance.class);
+        setPaintOrder (Bird.class, Pedestrian.class, Bus.class, User.class, Car.class, Ambulance.class);
 
         // set up background
         background = new GreenfootImage ("background01.png");
@@ -67,7 +67,7 @@ public class VehicleWorld extends World
         spawn();
         if(change){
             LaneChange changeLanes = new LaneChange(laneHeight);
-            addObject(changeLanes, changeX + 20, changeY + 55);
+            addObject(changeLanes, changeX + 60, changeY + 55);
             change = false;
             changeNow = !changeLanes.touching();
         }
@@ -84,25 +84,25 @@ public class VehicleWorld extends World
         if (Greenfoot.getRandomNumber (60) == 0){
             int lane = Greenfoot.getRandomNumber(laneCount);
             if (!laneSpawners[lane].isTouchingVehicle()){
-                int vehicleType = Greenfoot.getRandomNumber(3);
-                if (vehicleType == 0){
+                int vehicleType = Greenfoot.getRandomNumber(6);
+                if (vehicleType >= 0 && vehicleType <= 4){
                     addObject(new Car(laneSpawners[lane]), 0, 0);
-                } else if (vehicleType == 1){
+                } else if (vehicleType == 5){
                     addObject(new Bus(laneSpawners[lane]), 0, 0);
-                } else if (vehicleType == 2){
+                } else if (vehicleType == 6){
                     addObject(new Ambulance(laneSpawners[lane]), 0, 0);
                 }
             }
         }
 
         // Chance to spawn a Walker
-        if (Greenfoot.getRandomNumber (60) == 0){
+        if (Greenfoot.getRandomNumber (150) == 0){
             int xSpawnLocation = Greenfoot.getRandomNumber (600) + 100; // random between 99 and 699, so not near edges
             boolean spawnAtTop = Greenfoot.getRandomNumber(2) == 0 ? true : false;
             if (spawnAtTop){
                 addObject (new Bird (1), xSpawnLocation, 50);
             } else {
-                addObject (new Bird_1 (-1), xSpawnLocation, 550);
+                addObject (new Bird (-1), xSpawnLocation, 550);
             }
         }
     }

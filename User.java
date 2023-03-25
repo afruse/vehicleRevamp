@@ -7,14 +7,14 @@ public class User extends Vehicle
     private static double third = 1.7;
     private static double fourth = 1.3;
     private static double fifth = 0.9;
-    private static double gear = first;
+    private static double gear = fifth;
     private double rpm;
     private double wheelSpeed;
     public double Rpm(){
         return wheelSpeed / gear;
     }
     public void addedToWorld(World w){
-        setLocation(400, 300);
+        setLocation(400, 360);
     }
     public User(VehicleSpawner origin) {
         super(origin); // call the superclass' constructor
@@ -73,6 +73,9 @@ public class User extends Vehicle
             }
 
         }
+    }
+    public double getWheelSpeed(){
+        return wheelSpeed * .07;
     }
     public void brake(){
         if(Greenfoot.isKeyDown("down")){

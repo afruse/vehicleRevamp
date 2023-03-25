@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Car extends Vehicle
 {
-    private static boolean othersChanging = false;
+    //private static boolean othersChanging = false;
     private boolean canCheckChange = true;
     private boolean canChangeNow = false;
     private boolean smoothChange = false;
@@ -21,21 +21,21 @@ public class Car extends Vehicle
     {
         drive();
         Vehicle ahead = (Vehicle) getOneObjectAtOffset (direction * (int)(speed + getImage().getWidth()/2 + 4), 0, Vehicle.class);
-        if(ahead != null && !othersChanging && canCheckChange && (600-VehicleWorld.laneHeight*2) > getY()){
+        if(ahead != null && /*!othersChanging &&*/ canCheckChange && (600-VehicleWorld.laneHeight*2) > getY()){
             VehicleWorld.change(getX(), getY());
-            othersChanging = true;
+            /*othersChanging = true;*/
             canCheckChange = false;
             canChangeNow = true;
         }
         if(VehicleWorld.ChangeLaneNow() && canChangeNow){
             smoothChange = true;
             changeLocation = getY() + VehicleWorld.laneHeight + 5;
-            othersChanging = false;
+            /*othersChanging = false;*/
             canChangeNow = false;
         }
         else{
             canChangeNow = false;
-            othersChanging = false;
+            //othersChanging = false;
         }
         if(smoothChange && getY() < changeLocation){
             setLocation(getX(), getY() + 3);

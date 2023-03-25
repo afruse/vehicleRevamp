@@ -3,11 +3,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The Bus subclass
  */
+//private SimpleTimer time = new SimpleTimer();
 public class Bus extends Vehicle
 {
+    private boolean stop = false;
+    private SimpleTimer time = new SimpleTimer();
     public Bus(VehicleSpawner origin){
         super (origin); // call the superclass' constructor first
-        
         //Set up values for Bus
         maxSpeed = 1.5 + ((Math.random() * 10)/5);
         speed = maxSpeed;
@@ -21,7 +23,12 @@ public class Bus extends Vehicle
      */
     public void act()
     {
-        drive();
+        if(!stop){
+            drive();
+        }
+        else if(stop && time.millisElapsed() > 1000){
+            stop = false;
+        }
         checkHitWalker();
         if (checkEdge()){
             getWorld().removeObject(this);
@@ -29,11 +36,12 @@ public class Bus extends Vehicle
         
     }
 
-    public boolean checkHitWalker () {
-        Crossers p = (Crossers)getOneObjectAtOffset((int)speed + getImage().getWidth()/2, 0, Crossers.class);
-        
+    public boolean checkHitWalker() {
+        Crossers p = (Crossers)getOneIntersectingObject(Crossers.class);        
         if (p != null){
-            p.knockDown();
+            getWorld().removeObject(p);
+            time.mark();
+            stop = true;
             return true;
         }
         return false;
