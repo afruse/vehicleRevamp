@@ -12,13 +12,13 @@ public abstract class Vehicle extends SuperSmoothMover
     protected boolean moving;
     protected int yOffset;
     protected VehicleSpawner origin;
-    
+    protected GreenfootSound honk;
     protected abstract boolean checkHitWalker ();
 
     public Vehicle (VehicleSpawner origin) {
         this.origin = origin;
         moving = true;
-        
+        honk = new GreenfootSound("Horn Honk-SoundBible.com-1162546405.wav");
         if (origin.facesRightward()){
             direction = 1;
             
@@ -65,16 +65,19 @@ public abstract class Vehicle extends SuperSmoothMover
         // since every Vehicle "promises" to have a getSpeed() method,
         // we can call that on any vehicle to find out it's speed
         Vehicle ahead = (Vehicle) getOneObjectAtOffset (direction * (int)(speed + getImage().getWidth()/2 + 4), 0, Vehicle.class);
-        if (ahead == null)
+        if(ahead == null && (maxSpeed - VehicleWorld.slowDown) > 0){
+            speed = maxSpeed - VehicleWorld.slowDown;
+        }
+        else if (ahead == null && (maxSpeed - VehicleWorld.slowDown) < 0)
         {
             speed = maxSpeed;
-
         } else {
+            honk.play();
             speed = ahead.getSpeed() - 2;
         }
-        move (speed * direction);
-    }   
-
+        move ((speed) * direction);
+    }
+    protected abstract void giveWay();
     /**
      * An accessor that can be used to get this Vehicle's speed. Used, for example, when a vehicle wants to see
      * if a faster vehicle is ahead in the lane.

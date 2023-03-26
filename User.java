@@ -22,6 +22,9 @@ public class User extends Vehicle
         speed = maxSpeed;
         yOffset = 0;
     }
+    public void giveWay(){
+        
+    }
     public void act()
     {
         if(Greenfoot.isKeyDown("A") && gear == first){

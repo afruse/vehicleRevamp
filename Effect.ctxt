@@ -1,10 +1,12 @@
 #BlueJ class context
 comment0.target=Effect
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Effect\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=duration
-comment1.target=Effect(int)
+comment1.params=duration\ fadeInRate\ fadeOutRate\ image
+comment1.target=Effect(int,\ int,\ int,\ greenfoot.GreenfootImage)
 comment2.params=image\ fadeInRate
 comment2.target=greenfoot.GreenfootImage\ fadeIn(greenfoot.GreenfootImage,\ int)
-comment3.params=
-comment3.target=void\ act()
-numComments=4
+comment3.params=image\ fadeOutRate
+comment3.target=greenfoot.GreenfootImage\ fadeOut(greenfoot.GreenfootImage,\ int)
+comment4.params=
+comment4.target=void\ act()
+numComments=5

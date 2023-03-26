@@ -9,10 +9,26 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Lightning extends Effect
 {
     public Lightning(){
-        super(700);
+        super(2000, 85, 15, new GreenfootImage("lightning.png"));
+        GreenfootSound thunder = new GreenfootSound("Thunder-Mike_Koenig-315681025.wav");
+        thunder.play();
+        //fade.mark();
     }
     public void act()
     {
-        // Add your action code here.
+        if(fade.millisElapsed() > duration){
+            fadeIn = false;
+            fadeOut = true;
+        }
+        if(fadeIn && image.getTransparency() < 255){
+            image.setTransparency(image.getTransparency() + fadeInRate);
+        }
+        if(fadeOut && image.getTransparency() > 0){
+            image.setTransparency(image.getTransparency() - fadeOutRate);
+        }
+        if(image.getTransparency() < 20){
+            VehicleWorld.slowDown = 0;
+        }
+        setImage(image);
     }
 }
