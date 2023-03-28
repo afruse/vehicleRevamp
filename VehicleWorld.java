@@ -93,7 +93,7 @@ public class VehicleWorld extends World
                     addObject(new Ambulance(laneSpawners[0]), 0, 0);
                 }
                 else if (vehicleType >= 2 && vehicleType < 4){
-                    addObject(new User(laneSpawners[0]), 0, 0);
+                    addObject(new User(laneSpawners[lane]), 0, 0);
                 }
             }
         }
