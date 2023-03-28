@@ -13,7 +13,9 @@ public abstract class Vehicle extends SuperSmoothMover
     protected int yOffset;
     protected VehicleSpawner origin;
     protected GreenfootSound honk;
-    protected abstract boolean checkHitWalker ();
+    protected SimpleTimer timer;
+    protected boolean time = true;
+    protected abstract boolean checkHitWalker();
 
     public Vehicle (VehicleSpawner origin) {
         this.origin = origin;
@@ -26,6 +28,8 @@ public abstract class Vehicle extends SuperSmoothMover
             direction = -1;
             getImage().mirrorHorizontally();
         }
+        // sets the timer
+        timer = new SimpleTimer();
     }
     
     public void addedToWorld (World w){
@@ -68,15 +72,31 @@ public abstract class Vehicle extends SuperSmoothMover
         if(ahead == null && (maxSpeed - VehicleWorld.slowDown) > 0){
             speed = maxSpeed - VehicleWorld.slowDown;
         }
+        // added extra if statement and conditions to make sure cars don't go backwards
         else if (ahead == null && (maxSpeed - VehicleWorld.slowDown) < 0)
         {
             speed = maxSpeed;
         } else {
+            //when slower car in front honk sounds play
             honk.play();
-            speed = ahead.getSpeed() - 2;
+            speed = ahead.getSpeed() - 1;
+        }
+        //starts a counter can only run if statement once
+        if(ahead != null && time){
+            timer.mark();
+            time = false;
         }
         move ((speed) * direction);
     }
+    //to check if Vehicle has been colliding for more than .8 seconds
+    //if colliding for that long Vehicle will explode
+    public void boom(){
+        if(time == false && timer.millisElapsed() > 800 && this.isTouching(Vehicle.class)){
+            getWorld().addObject(new Boom(), getX(), getY());
+        }
+    }
+    //forces all Vehicles to have giveWay() method
+    //all vehicle move to the rightside of the map if ambulances come by
     protected abstract void giveWay();
     /**
      * An accessor that can be used to get this Vehicle's speed. Used, for example, when a vehicle wants to see

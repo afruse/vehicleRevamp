@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A Pedestrian that tries to walk across the street
+ * Since this is a highway these pedestrians are meant to be crazy people thus their weird jittery walk
  */
 public class Pedestrian extends Crossers
 {
@@ -15,8 +15,14 @@ public class Pedestrian extends Crossers
      */
     public void act()
     {
-        // If there is a v
         if (awake){
+            //code to get the pedestrians to move in weird way
+            if(Greenfoot.getRandomNumber(3) == 0){
+                move(-1);
+            }
+            else{
+                move(Greenfoot.getRandomNumber(1));
+            }
             if (getOneObjectAtOffset(0, (int)(direction * getImage().getHeight()/2 + (int)(direction * speed)), Vehicle.class) == null){
                 setLocation (getX(), getY() + (int)(speed*direction));
             }

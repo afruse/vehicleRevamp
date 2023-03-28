@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
+import java.util.ArrayList;
 /**
- * The Car subclass
+ * Speeding bad driver
  */
 public class Car extends Vehicle
 {
@@ -23,27 +23,30 @@ public class Car extends Vehicle
 
     public void act()
     {
+        boom();
+        //plays engine sound if not already playing to loop
         if(!fourK.isPlaying()){
             fourK.play();
         }
         drive();
+        //calls the laneChange spawner
         Vehicle ahead = (Vehicle) getOneObjectAtOffset (direction * (int)(speed + getImage().getWidth()/2 + 4), 0, Vehicle.class);
         if(ahead != null && /*!othersChanging &&*/ canCheckChange && (600-VehicleWorld.laneHeight*2) > getY()){
             VehicleWorld.change(getX(), getY());
-            /*othersChanging = true;*/
             canCheckChange = false;
             canChangeNow = true;
         }
+        //gets whether or not lane is free to change to
+        //if it is free then the x value to change to will be set and boolean to start changing will be set to true
         if(VehicleWorld.ChangeLaneNow() && canChangeNow){
             smoothChange = true;
             changeLocation = getY() + VehicleWorld.laneHeight + 5;
-            /*othersChanging = false;*/
             canChangeNow = false;
         }
         else{
             canChangeNow = false;
-            //othersChanging = false;
         }
+        //to change smoothly free lane
         if(smoothChange && getY() < changeLocation){
             vroom.play();
             setLocation(getX(), getY() + 3);
@@ -60,22 +63,21 @@ public class Car extends Vehicle
         }
     }
     public void giveWay(){
-        List<Ambulance>objects = getObjectsInRange(400, Ambulance.class);
+        //gets all the Ambulances in the area
+        ArrayList<Ambulance>objects = new ArrayList<Ambulance>(getObjectsInRange(200, Ambulance.class));
+        //if there is an Ambulance then the vehicle will move over to the right using code simular to the lane change
         if(objects.size() > 0){
             if((600-VehicleWorld.laneHeight*2) > getY()){
                 VehicleWorld.change(getX(), getY());
-                /*othersChanging = true;*/
                 canChangeNow = true;
             }
             if(VehicleWorld.ChangeLaneNow() && canChangeNow){
                 smoothChange = true;
                 changeLocation = getY() + VehicleWorld.laneHeight + 5;
-                /*othersChanging = false;*/
                 canChangeNow = false;
             }
             else{
                 canChangeNow = false;
-                //othersChanging = false;
             }
             if(smoothChange && getY() < changeLocation){
                 setLocation(getX(), getY() + 3);
@@ -83,6 +85,7 @@ public class Car extends Vehicle
             else if (smoothChange && getY() >= changeLocation){
                 smoothChange = false;
             }
+            //makes the speed lower to slow down for the ambulance
             maxSpeed = 1;
         }
     }

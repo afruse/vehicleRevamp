@@ -1,10 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Lightning here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Lightning and thunder effect that would randomly strike throughout the simulation
  */
 public class Lightning extends Effect
 {
@@ -16,6 +13,7 @@ public class Lightning extends Effect
     }
     public void act()
     {
+        //same as Boom, couldn't get methods to work despite being common code
         if(fade.millisElapsed() > duration){
             fadeIn = false;
             fadeOut = true;
@@ -26,8 +24,9 @@ public class Lightning extends Effect
         if(fadeOut && image.getTransparency() > 0){
             image.setTransparency(image.getTransparency() - fadeOutRate);
         }
-        if(image.getTransparency() < 20){
+        if(image.getTransparency() < 1){
             VehicleWorld.slowDown = 0;
+            getWorld().removeObject(this);
         }
         setImage(image);
     }

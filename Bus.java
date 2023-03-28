@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
+import java.util.ArrayList;
 /**
- * The Bus subclass
+ * High way safety patrol bus to cleanup up the highway and ensure minimal damage to crossers
  */
 //private SimpleTimer time = new SimpleTimer();
 public class Bus extends Vehicle
@@ -29,13 +29,16 @@ public class Bus extends Vehicle
      */
     public void act()
     {
+        boom();
         if(!busEngine.isPlaying()){
             busEngine.play();
         }
         giveWay();
+        //drives if there aren't any crossers to pick up
         if(!stop){
             drive();
         }
+        //if there is crossers to pick up it will stop for 1 second
         else if(stop && time.millisElapsed() > 1000){
             stop = false;
         }
@@ -47,22 +50,21 @@ public class Bus extends Vehicle
         
     }
     public void giveWay(){
-        List<Ambulance>objects = getObjectsInRange(400, Ambulance.class);
+        //gets all the Ambulances in the area
+        ArrayList<Ambulance>objects = new ArrayList<Ambulance>(getObjectsInRange(200, Ambulance.class));
+        //if there is an Ambulance then the vehicle will move over to the right using code simular to the lane change
         if(objects.size() > 0){
             if((600-VehicleWorld.laneHeight*2) > getY()){
                 VehicleWorld.change(getX(), getY());
-                /*othersChanging = true;*/
                 canChangeNow = true;
             }
             if(VehicleWorld.ChangeLaneNow() && canChangeNow){
                 smoothChange = true;
                 changeLocation = getY() + VehicleWorld.laneHeight + 5;
-                /*othersChanging = false;*/
                 canChangeNow = false;
             }
             else{
                 canChangeNow = false;
-                //othersChanging = false;
             }
             if(smoothChange && getY() < changeLocation){
                 setLocation(getX(), getY() + 3);
@@ -70,14 +72,18 @@ public class Bus extends Vehicle
             else if (smoothChange && getY() >= changeLocation){
                 smoothChange = false;
             }
+            //makes the speed lower to slow down for the ambulance
             maxSpeed = 1;
         }
     }
     public boolean checkHitWalker() {
         Crossers p = (Crossers)getOneIntersectingObject(Crossers.class);        
         if (p != null){
+            //checks to see if it's picking up any Crossers
             getWorld().removeObject(p);
+            //marks time at which it finds a crosser
             time.mark();
+            //boolean to make the bus stop while picking up Crossers
             stop = true;
             return true;
         }

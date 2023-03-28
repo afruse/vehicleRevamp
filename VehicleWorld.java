@@ -42,7 +42,7 @@ public class VehicleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false); 
 
-        setPaintOrder (Lightning.class, Bird.class, Pedestrian.class, Bus.class, User.class, Car.class, Ambulance.class);
+        setPaintOrder (Lightning.class, Bird.class, Bus.class, User.class, Car.class, Pedestrian.class, Ambulance.class);
 
         // set up background
         background = new GreenfootImage ("background01.png");
@@ -85,18 +85,21 @@ public class VehicleWorld extends World
             int lane = Greenfoot.getRandomNumber(laneCount);
             if (!laneSpawners[lane].isTouchingVehicle()){
                 int vehicleType = Greenfoot.getRandomNumber(6);
-                if (vehicleType >= 0 && vehicleType <= 4){
+                if (vehicleType >= 0 && vehicleType < 2){
                     addObject(new Car(laneSpawners[lane]), 0, 0);
-                } else if (vehicleType == 5){
+                } else if (vehicleType == 4){
                     addObject(new Bus(laneSpawners[lane]), 0, 0);
-                } else if (vehicleType == 6){
+                } else if (vehicleType == 5 && Greenfoot.getRandomNumber(60) == 0){
                     addObject(new Ambulance(laneSpawners[0]), 0, 0);
+                }
+                else if (vehicleType >= 2 && vehicleType < 4){
+                    addObject(new User(laneSpawners[0]), 0, 0);
                 }
             }
         }
 
         // Chance to spawn a Walker
-        if (Greenfoot.getRandomNumber (150) == 0){
+        if(Greenfoot.getRandomNumber (150) == 0){
             int xSpawnLocation = Greenfoot.getRandomNumber (600) + 100; // random between 99 and 699, so not near edges
             boolean spawnAtTop = Greenfoot.getRandomNumber(2) == 0 ? true : false;
             if (spawnAtTop){
@@ -114,9 +117,9 @@ public class VehicleWorld extends World
                 addObject (new Pedestrian (-1), xSpawnLocation, 550);
             }
         }
-        if(Greenfoot.getRandomNumber(250) == 0){
-            int xSpawnLocation = Greenfoot.getRandomNumber (100) + 350;
-            addObject(new Lightning(), xSpawnLocation, 300);
+        if(Greenfoot.getRandomNumber(950) == 0){
+            addObject(new Lightning(), Greenfoot.getRandomNumber (100) + 350, 300);
+            addObject(new Lightning(), Greenfoot.getRandomNumber (100) + 350, 300);
             slowDown = 2;
         }
     }

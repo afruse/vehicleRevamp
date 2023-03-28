@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Bird
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bird\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Since\ this\ is\ a\ bird\ it\ can\ fly\ over\ vehicles\ if\ given\ enough\ time\ to\ react\r\n\ meaning\ as\ long\ as\ it\ isn't\ hit\ head\ on\ it\ wont\ get\ knocked\ down\r\n
 comment1.params=direction
 comment1.target=Bird(int)
 comment2.params=w

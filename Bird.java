@@ -1,10 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bird here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Since this is a bird it can fly over vehicles if given enough time to react
+ * meaning as long as it isn't hit head on it wont get knocked down
  */
 public class Bird extends Crossers
 {

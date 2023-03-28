@@ -24,29 +24,29 @@ public abstract class Effect extends Actor
         setImage(image);
         fade.mark();
     }
-    protected GreenfootImage fadeIn(GreenfootImage image, int fadeInRate){
-        image.setTransparency(image.getTransparency() + fadeInRate);
-        return image;
+    //these methods don't work if called from subclasses
+    protected void fadeIn(GreenfootImage image){
+        //fades in with the given rate
+        if(fadeIn && image.getTransparency() < 255){
+            image.setTransparency(image.getTransparency() + fadeInRate);
+        }
     }
-    protected GreenfootImage fadeOut(GreenfootImage image, int fadeOutRate){
-        image.setTransparency(image.getTransparency() - fadeOutRate);
-        return image;
+    protected void fadeOut(GreenfootImage image){
+        //determine when to start fading out
+        if(fade.millisElapsed() > duration){
+            fadeIn = false;
+            fadeOut = true;
+        }
+        if(fadeOut && image.getTransparency() > 0){
+            image.setTransparency(image.getTransparency() - fadeOutRate);
+        }
+        //all the effects on the traffic cleared and removed after faded away
+        if(image.getTransparency() < 1){
+            VehicleWorld.slowDown = 0;
+            getWorld().removeObject(this);
+        }
     }
     public void act()
     {
-        /*if(fade.millisElapsed() < 1){
-            fadeIn = true;
-        }
-        if(fade.millisElapsed() > duration){
-            fadeOut = true;
-        }
-        if(fadeIn){
-            image = fadeIn(image, 100);
-        }
-        if(fadeOut){
-            image = fadeOut(image, 100);
-        }*/
-        image.setTransparency(255);
-        setImage(image);
     }
 }
