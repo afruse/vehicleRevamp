@@ -2,16 +2,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.World;
 
 /**
- * <h1>The new and vastly improved 2022 Vehicle Simulation Assignment.</h1>
- * <p> This is the first redo of the 8 year old project. Lanes are now drawn dynamically, allowing for
- *     much greater customization. Walkers can now move in two directions. The graphics are better
- *     and the interactions smoother.</p>
- * <p> The Walkers are not as dumb as before (they don't want straight into Vehicles) and the Vehicles
- *     do a somewhat better job detecting Walkers.</p>
- * 
- * Version Notes - Feb 2023
- * --> Includes grid <--> lane conversion method
- * --> Now starts with 1-way, 5 lane setup (easier)
+ * Credits:
+ * Sound:
+ * Sound for Car class: 4k.wav and vroom.wav is by me
+ * Sound for User class: exorcist_8.wav and exorcist_vroom.wav by me
+ * Sound for Boom class: Grenade Explosion-SoundBible.com-2100581469.wav by Mike Koenig from webiste https://soundbible.com/1467-Grenade-Explosion.html
+ * Sound for Bus class: bus.wav by SFX from https://www.youtube.com/watch?v=gsjG87p3DCI edited by me
+ * Sound for Vehicle class: Horn Honk-SoundBible.com-1162546405.wav by Mike Koenig from https://soundbible.com/1048-Horn-Honk.html
+ * Sound for Lightning class: Thunder-Mike_Koenig-315681025.wav by Mike Koenig from https://soundbible.com/1907-Thunder.html
+ * Images:
+ * Image for Boom class: explosion_Boom_2.png by Sogomn from https://opengameart.org/content/explosion-3
+ * Image for User class: car01.png by me
  */
 public class VehicleWorld extends World
 {
